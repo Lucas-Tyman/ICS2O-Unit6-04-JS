@@ -1,6 +1,8 @@
 // Created by: Lucas Tyman
-// Created on: Apr 2022
+// Created on: May 2022
 // This file contains the JS functions for index.html
+
+'use strict'
 
 /**
  * Check service worker.
@@ -12,8 +14,21 @@ if (navigator.serviceWorker) {
 }
 
 /**
- * This function displays an alert.
+ * This function calculates the volume of a sphere
  */
-function myButtonClicked() {
-  document.getElementById("hello-world").innerHTML = "<p>Hello, World!</p>"
+window.onload = function() {
+  const params = new URLSearchParams(document.location.search)
+
+  // input and process
+  const radius = params.get('r')
+  const volume = (4 / 3) * Math.PI * Math.pow(radius, 3)
+  const dimensions = "Radius: " + radius + " cm"
+
+  // output
+  if (radius > 0) {
+    document.getElementById('dimensions').innerHTML = dimensions
+    document.getElementById('volume').innerHTML = 'Volume is: ' + volume.toFixed(2) + ' cm³'
+  } else {
+    document.getElementById('volume').innerHTML = 'Volume is NaN.'
+  }
 }
